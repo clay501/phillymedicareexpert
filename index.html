@@ -11,38 +11,89 @@
 <link rel="stylesheet" href="_ds/broadsheet-ec8ad555-c2a3-4cda-ac85-cfc884bc9b77/styles.css">
 <script src="_ds/broadsheet-ec8ad555-c2a3-4cda-ac85-cfc884bc9b77/_ds_bundle.js"></script>
 <title>Philly's Medicare Expert – Clay Klaus-Wade | The Daywalt Group</title>
-<meta name="description" content="Free Medicare guidance in Philadelphia. Clay Klaus-Wade compares Medicare Advantage, Supplement &amp; Part D plans and helps you enroll — no pressure, ever.">
+<meta name="description" content="Free Medicare guidance in Philadelphia. Clay Klaus-Wade compares Medicare Advantage, Supplement &amp; Part D plans and helps you enroll, with no pressure.">
 <link rel="canonical" href="https://phillymedicareexpert.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Philly's Medicare Expert">
 <meta property="og:title" content="Philly's Medicare Expert – Clay Klaus-Wade | The Daywalt Group">
-<meta property="og:description" content="Free Medicare guidance in Philadelphia. Clay Klaus-Wade compares Medicare Advantage, Supplement &amp; Part D plans and helps you enroll — no pressure, ever.">
+<meta property="og:description" content="Free Medicare guidance in Philadelphia. Clay Klaus-Wade compares Medicare Advantage, Supplement &amp; Part D plans and helps you enroll, with no pressure.">
 <meta property="og:url" content="https://phillymedicareexpert.com/">
-<meta property="og:image" content="https://phillymedicareexpert.com/assets/headshot.jpg">
+<meta property="og:image" content="https://phillymedicareexpert.com/assets/share-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Philly's Medicare Expert – Clay Klaus-Wade | The Daywalt Group">
-<meta name="twitter:description" content="Free Medicare guidance in Philadelphia. Clay Klaus-Wade compares Medicare Advantage, Supplement &amp; Part D plans and helps you enroll — no pressure, ever.">
-<meta name="twitter:image" content="https://phillymedicareexpert.com/assets/headshot.jpg">
+<meta name="twitter:description" content="Free Medicare guidance in Philadelphia. Clay Klaus-Wade compares Medicare Advantage, Supplement &amp; Part D plans and helps you enroll, with no pressure.">
+<meta name="twitter:image" content="https://phillymedicareexpert.com/assets/share-card.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "InsuranceAgency",
-  "name": "The Daywalt Group – Clay Klaus-Wade",
-  "image": "https://phillymedicareexpert.com/assets/headshot.jpg",
+  "name": "Clay Klaus-Wade, Medicare Insurance Agent, The Daywalt Group",
+  "image": "https://phillymedicareexpert.com/assets/share-card.jpg",
   "url": "https://phillymedicareexpert.com/",
   "telephone": "+1-215-712-8889",
   "email": "clay@thedaywaltgroup.com",
-  "areaServed": {
-    "@type": "City",
-    "name": "Philadelphia, PA"
+  "priceRange": "Free",
+  "description": "Licensed Medicare agent affiliated with The Daywalt Group. Based in South Philly, serving the Philadelphia five-county area in person, by phone or by video. No charge for plan reviews or enrollment help.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Philadelphia",
+    "addressRegion": "PA",
+    "addressCountry": "US"
   },
+  "areaServed": [
+    {
+      "@type": "AdministrativeArea",
+      "name": "Philadelphia County, PA"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Delaware County, PA"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Montgomery County, PA"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Chester County, PA"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Bucks County, PA"
+    }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "opens": "16:00",
+      "closes": "21:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "13:00",
+      "closes": "17:00"
+    }
+  ],
   "employee": {
     "@type": "Person",
     "name": "Clay Klaus-Wade",
-    "jobTitle": "Medicare Sales Representative"
+    "jobTitle": "Licensed Medicare Insurance Agent"
   },
   "sameAs": [
-    "https://www.thedaywaltgroup.com"
+    "https://www.thedaywaltgroup.com",
+    "https://share.google/Rzzit3Komcq0kel1F"
   ]
 }
 </script>
@@ -126,6 +177,7 @@
   ]
 }
 </script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
   body { margin: 0; background: #ffffff; text-wrap: pretty; }
   a { color: #2D2CCF; text-decoration: none; }
@@ -144,6 +196,18 @@
     .nav a[href^="Blog"], .nav a[href^="blog"] { margin-left: 0 !important; }
   }
 </style>
+<script>
+document.addEventListener('input', function (e) {
+  var el = e.target;
+  if (!el || el.name !== 'Phone') return;
+  var d = (el.value || '').replace(/\D/g, '').slice(0, 10);
+  var out = d;
+  if (d.length > 6) out = '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+  else if (d.length > 3) out = '(' + d.slice(0,3) + ') ' + d.slice(3);
+  else if (d.length > 0) out = '(' + d;
+  el.value = out;
+});
+</script>
 </helmet>
 
 <div style="--color-accent: #2D2CCF; --color-accent-700: #2320a8; --color-accent-800: #1a188a; --color-bg: #ffffff; --color-text: #000000; background: #ffffff; color: #000000; font-family: var(--font-body); padding-bottom: 56px;">
@@ -151,7 +215,7 @@
   
 
   <nav class="nav" style="padding-inline: clamp(20px, 6vw, 40px); background: #ffffff; flex-wrap: wrap; gap: 12px 20px; padding-block: 10px; height: auto; min-height: 0; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #d9d9d9;">
-    <a href="#top" style="display: block; line-height: 0; flex: 0 0 auto;"><img src="assets/daywalt-logo.png" alt="Clay Klaus-Wade — The Daywalt Group" style="height: 54px; width: 169px; display: block; flex: 0 0 auto;"></a>
+    <a href="#top" style="display: block; line-height: 0; flex: 0 0 auto;"><img src="assets/daywalt-logo.png" alt="Clay Klaus-Wade, The Daywalt Group" width="169" height="54" style="height: 54px; width: 169px; display: block; flex: 0 0 auto;"></a>
     
     <a class="btn btn-ghost" href="tel:+12157128889" style=" white-space: nowrap; color: #2D2CCF;">(215) 712-8889</a>
     
@@ -164,9 +228,11 @@
       <div>
         
         <h1 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(40px, 9vw, 64px); line-height: 1.06; letter-spacing: -0.025em; margin: 0 0 0 -0.03em; max-width: 812px;">Philly’s Medicare Expert</h1>
-        <p class="hero-p" style="font-size: 18px; line-height: 30px; margin: 24px 0 0; max-width: 812px;">Navigating Medicare doesn’t have to be overwhelming. Clay Klaus-Wade and <br>The Daywalt Group are here to guide you every step of the way.</p>
+        <p style="font-family: var(--font-heading); font-size: clamp(17px, 2.5vw, 21px); line-height: 1.35; letter-spacing: -0.01em; margin: 14px 0 0; max-width: 812px; color: #2D2CCF;" class="hero-p">Licensed Medicare Agent Affiliated With <span style="white-space: nowrap;">The Daywalt Group</span><br><span style="white-space: nowrap;">Serving the Greater Philadelphia Area</span></p>
+        <p class="hero-p" style="font-size: 18px; line-height: 30px; margin: 24px 0 0; max-width: 812px;">Navigating Medicare doesn’t have to be overwhelming. Clay Klaus-Wade and <br><a href="https://thedaywaltgroup.com" target="_blank" rel="noopener">The Daywalt Group</a> are here to guide you every step of the way.</p>
         <p class="hero-p" style="font-size: 18px; line-height: 30px; margin: 18px 0 0; max-width: 812px;">Our mission is to find the right coverage that fits your needs and budget, all while <br>providing personalized support to make the process seamless and stress-free.</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px;">
+        <p class="hero-p" style="font-size: 18px; line-height: 30px; margin: 18px 0 0; max-width: 812px;">Clay meets clients in person, at your home or anywhere else that is comfortable, throughout the Philadelphia five-county area: Philadelphia, Delaware, Montgomery, Chester and Bucks. Phone and video appointments are available if you prefer.</p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px;">
           <a class="btn btn-primary" href="https://schedulewithclay.link/medicare/" target="_blank" rel="noopener" style="min-height: 54px; padding-inline: 24px; font-size: 16px; background: #2D2CCF; border-color: #2D2CCF; color: #ffffff;" style-hover="background: #2320a8; border-color: #2320a8;">Schedule a free consultation today</a>
         </div>
       </div>
@@ -225,8 +291,9 @@
         </div>
       </div>
       <div id="contact" style="margin-top: 36px; padding-top: 32px; border-top: 1px solid #d9d9d9;">
-        <h3 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; margin: 0; text-align: center;">Request a call</h3>
+        <h3 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; margin: 0; text-align: center;">Request a Call</h3>
         <p style="font-size: 15.5px; line-height: 26px; margin: 8px auto 24px; max-width: 58ch; text-align: center;">Tell Clay a little about your situation and he will get back to you, usually the same day. There is no cost and no obligation.</p>
+          <p style="font-size: 14px; line-height: 26px; margin: 0 auto; max-width: 58ch; text-align: center; color: #555;">Appointment hours<br><span style="white-space: nowrap;">Monday-Thursday: 4:00-9:00 pm</span><br><span style="white-space: nowrap;">Saturday-Sunday: 1:00-5:00 pm</span></p>
         <form action="https://formsubmit.co/clay@thedaywaltgroup.com" method="POST" style="display: grid; gap: 18px; max-width: 640px; margin: 0 auto; text-align: left;">
           <input type="hidden" name="_subject" value="New Medicare inquiry from phillymedicareexpert.com">
           <input type="hidden" name="_captcha" value="false">
@@ -237,7 +304,7 @@
               <input class="input" type="text" name="Name" required="required" autocomplete="name" style="min-height: 48px; font-size: 16px;">
             </label>
             <label class="field" style="display: grid; gap: 6px; font-size: 14px;">Phone
-              <input class="input" type="tel" name="Phone" required="required" autocomplete="tel" style="min-height: 48px; font-size: 16px;">
+              <input class="input" type="tel" name="Phone" required="required" autocomplete="tel" inputmode="tel" maxlength="14" placeholder="(215) 555-0123" pattern="\(\d{3}\) \d{3}-\d{4}" title="Ten digits, formatted as you type" style="min-height: 48px; font-size: 16px;">
             </label>
             <label class="field" style="display: grid; gap: 6px; font-size: 14px;">Email
               <input class="input" type="email" name="Email" required="required" autocomplete="email" style="min-height: 48px; font-size: 16px;">
@@ -254,6 +321,16 @@
               <option>I already have a Medicare plan and want it reviewed</option>
               <option>I am helping a family member</option>
               <option>I am not sure yet</option>
+            </select>
+          </label>
+          <label class="field" style="display: grid; gap: 6px; font-size: 14px;">Preferred method of communication
+            <select class="input" name="Preferred contact method" required="required" style="height: 48px; font-size: 16px; padding: 6px 10px; border-radius: var(--radius-md);">
+              <option value="">Select one</option>
+              <option>Phone call</option>
+              <option>Text message</option>
+              <option>Email</option>
+              <option>Video call</option>
+              <option>No preference</option>
             </select>
           </label>
           <label class="field" style="display: grid; gap: 6px; font-size: 14px;">Best time to reach you
@@ -274,7 +351,7 @@
           <div style="display: flex; justify-content: center; margin-top: 4px;">
             <button class="btn btn-primary" type="submit" style="white-space: nowrap; min-height: 54px; padding-inline: 28px; font-size: 16px; background: #2D2CCF; border-color: #2D2CCF; color: #ffffff;" style-hover="background: #2320a8; border-color: #2320a8;">Send my request</button>
           </div>
-          <p style="font-size: 13px; line-height: 22px; margin: 0; color: #555;">Prefer to talk now? Call <a href="tel:+12157128889">(215) 712-8889</a> or <a href="https://schedulewithclay.link/medicare/" target="_blank" rel="noopener">book a time on Clay's calendar</a>.</p>
+          <p style="font-size: 13px; line-height: 22px; margin: 0; color: #555; text-align: center;">Prefer to talk now? Call <a href="tel:+12157128889">(215) 712-8889</a> or <a href="https://schedulewithclay.link/medicare/" target="_blank" rel="noopener">book a time on Clay's calendar</a>.</p>
         </form>
       </div>
     </section>
@@ -293,15 +370,15 @@
         <li style="font-size: 16.5px; line-height: 29px; padding: 10px 0; border-top: 1px solid #d9d9d9; border-bottom: 1px solid #d9d9d9; grid-column: 2;">Wellcare</li>
         
       </ul>
-      <h3 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; margin: 28px 0 0;">Compare plans, explore your options, and see what best fits all of your needs, <br>in one convenient place.</h3>
-      <div style="margin-top: 20px; display: flex; justify-content: center;">
+      <h3 style="font-family: var(--font-heading); font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; margin: 28px 0 0;">Compare plans, explore your options, and see what best fits <br>all of your needs, in one convenient place.</h3>
+      <div style="margin-top: 20px;">
         <a class="btn btn-secondary" href="https://planenroll.com/?purl=Clay-Klaus-Wade" target="_blank" rel="noopener" style="min-height: 48px; padding-inline: 22px; font-size: 15px; color: #2D2CCF; border-color: #2D2CCF;" style-hover="background: #ececfb;">Compare Plans</a>
       </div>
     </section>
 
     <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px clamp(24px, 5vw, 64px); align-items: start; padding: 48px 0 24px;">
       <figure style="margin: 0; background: #c9d7f5; border-radius: var(--radius-md); overflow: hidden; align-self: center;">
-        <img src="assets/headshot.jpg" alt="Clay Klaus-Wade, Medicare Sales Representative with The Daywalt Group in Philadelphia" style="display: block; width: 100%; max-width: 406px; height: auto;">
+        <img src="assets/headshot.jpg" alt="Clay Klaus-Wade, Medicare Sales Representative with The Daywalt Group in Philadelphia" width="406" height="548" style="display: block; width: 100%; max-width: 406px; height: auto;">
       </figure>
       <div>
         <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(28px, 6vw, 38px); line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 20px;">About Clay</h2>
@@ -413,7 +490,7 @@
           <span style="font-size: 22px; color: #2D2CCF; line-height: 39px;"><sc-if value="{{ o7 }}" hint-placeholder-val="{{ false }}">−</sc-if><sc-if value="{{ c7 }}" hint-placeholder-val="{{ true }}">+</sc-if></span>
         </button>
         <sc-if value="{{ o7 }}" hint-placeholder-val="{{ false }}">
-          <p style="font-size: 16px; line-height: 28px; margin: 0; padding: 0 0 20px; max-width: 58ch;">Yes! We offer travel insurance through GeoBlue, which provides medical coverage and support while you're traveling internationally. Whether you're planning a vacation, business trip, or studying abroad, we can help you choose a plan that fits your needs. You can learn more and get a quote here, or compare plans and benefits here. If you have specific questions or want help selecting a plan, feel free to reach out!</p>
+          <p style="font-size: 16px; line-height: 28px; margin: 0; padding: 0 0 20px; max-width: 58ch;">Yes! We offer travel insurance through GeoBlue, which provides medical coverage and support while you're traveling internationally. Whether you're planning a vacation, business trip, or studying abroad, we can help you choose a plan that fits your needs. Ask Clay for a quote and a side-by-side look at the plans. <a href="#contact">Use the Request a Call form above</a> or call <a href="tel:+12157128889">(215) 712-8889</a>. If you have specific questions or want help selecting a plan, feel free to reach out!</p>
         </sc-if>
       </div>
 
@@ -425,6 +502,27 @@
         <sc-if value="{{ o8 }}" hint-placeholder-val="{{ false }}">
           <p style="font-size: 16px; line-height: 28px; margin: 0; padding: 0 0 20px; max-width: 58ch;">The Daywalt Group is compensated from the Medicare health plan selected by the individual once they transition. Our certified Medicare advisors are not compensated more or less based on the product selected, and therefore match the beneficiary to the plan that best fits their personal healthcare needs.</p>
         </sc-if>
+      </div>
+    </section>
+
+    <section style="padding: 44px 0 8px;">
+      <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(28px, 6vw, 38px); line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 24px;">Notes on Medicare</h2>
+      <ul style="list-style: none; margin: 0; padding: 0; display: grid; gap: 0;">
+        <li style="padding: 18px 0; border-top: 1px solid #d9d9d9;">
+          <a href="medicare-basics.html" style="font-family: var(--font-heading); font-size: 21px; line-height: 30px; color: #000000;">Medicare Basics: What Every New Beneficiary Needs to Know</a>
+          <p style="font-size: 15.5px; line-height: 26px; margin: 6px 0 0; max-width: 62ch;">A plain-English breakdown of Parts A, B, C and D, Medigap, and exactly when you need to enroll.</p>
+        </li>
+        <li style="padding: 18px 0; border-top: 1px solid #d9d9d9;">
+          <a href="medicare-annual-enrollment.html" style="font-family: var(--font-heading); font-size: 21px; line-height: 30px; color: #000000;">Why You Should Review Your Medicare Plan Every Year</a>
+          <p style="font-size: 15.5px; line-height: 26px; margin: 6px 0 0; max-width: 62ch;">Prescriptions, networks and premiums change quietly. Here is what to check, and the key Annual Enrollment dates.</p>
+        </li>
+        <li style="padding: 18px 0; border-top: 1px solid #d9d9d9; border-bottom: 1px solid #d9d9d9;">
+          <a href="medicare-emergency-room-coverage.html" style="font-family: var(--font-heading); font-size: 21px; line-height: 30px; color: #000000;">Medicare and the Emergency Room: What You Need to Know Before You Need It</a>
+          <p style="font-size: 15.5px; line-height: 26px; margin: 6px 0 0; max-width: 62ch;">Costs, network rules and coverage while traveling differ between Original Medicare and Medicare Advantage.</p>
+        </li>
+      </ul>
+      <div style="margin-top: 22px;">
+        <a class="btn btn-secondary" href="blog.html" style="min-height: 48px; padding-inline: 22px; font-size: 15px; color: #2D2CCF; border-color: #2D2CCF;" style-hover="background: #ececfb;">Read the blog</a>
       </div>
     </section>
 
@@ -440,8 +538,10 @@
     </section>
 
     <footer style="padding: 8px 0; display: grid; gap: 14px;">
-      <img src="assets/daywalt-logo.png" alt="Clay Klaus-Wade — The Daywalt Group" style="height: 48px; width: auto; display: block; margin-bottom: 6px;">
+      <img src="assets/daywalt-logo.png" alt="Clay Klaus-Wade, The Daywalt Group" width="150" height="48" style="height: 48px; width: auto; display: block; margin-bottom: 6px;">
       <p class="fine" style="margin: 0; font-size: 14px; line-height: 25px;">Clay Klaus-Wade is licensed to serve clients in PA. <br>PA License #: 1274301 · NPN: 17619090</p>
+      <p style="margin: 0; font-size: 14px; line-height: 24px;">Clay Klaus-Wade is a Medicare Sales Representative with The Daywalt Group and is not an independent agent. This site is a microsite of The Daywalt Group.</p>
+      <p style="margin: 0; font-size: 14px; line-height: 24px;">Based in South Philly, serving the Philadelphia five-county area: Philadelphia, Delaware, Montgomery, Chester and Bucks counties. In-person, phone and video appointments available.</p>
       <p style="margin: 0; font-size: 14px; line-height: 25px;">We do not offer every plan available in your area. Any information we provide is limited to those plans we do offer in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options.</p>
       <p style="margin: 0; font-size: 13px; line-height: 23px; color: #555;">Clay Klaus-Wade · Medicare Sales Representative · The Daywalt Group · Philadelphia, PA</p>
     </footer>
