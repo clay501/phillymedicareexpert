@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://phillymedicareexpert.com/sitemap.xml
