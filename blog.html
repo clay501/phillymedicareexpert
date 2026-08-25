@@ -31,6 +31,32 @@
   a:hover { color: #1f1e9c; text-decoration: underline; }
   :focus-visible { outline: 2px solid #2D2CCF; outline-offset: 2px; }
   img { max-width: 100%; }
+  html { scroll-behavior: smooth; }
+  .nav { transition: box-shadow 220ms ease; }
+  .nav.om-stuck { box-shadow: 0 2px 14px rgba(0,0,0,0.07); }
+  .btn { transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease; }
+  .btn:active { transform: translateY(1px); }
+  .card { transition: transform 260ms ease, box-shadow 260ms ease; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.08); }
+  html.om-motion .om-reveal { opacity: 0; transform: translateY(18px); }
+  html.om-motion .om-reveal.om-in { opacity: 1; transform: none;
+    transition: opacity 620ms cubic-bezier(.22,.61,.36,1), transform 620ms cubic-bezier(.22,.61,.36,1); }
+  .om-par { will-change: transform; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    html.om-motion .om-reveal { opacity: 1 !important; transform: none !important; }
+    .card:hover { transform: none; }
+  }
+  @media (max-width: 620px) {
+    .nav { padding-block: 8px !important; gap: 8px 10px !important; }
+    .nav .btn { font-size: 13px !important; padding-inline: 10px !important; min-height: 40px !important; }
+    .nav a[href^="mailto"] { display: none !important; }
+    .nav a[href*="schedulewithclay"] { flex: 1 0 100% !important; justify-content: center !important; }
+  }
+  @media (max-width: 700px) {
+    .post-row { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; }
+    .post-row p[style*="span 2"] { grid-row: auto !important; }
+  }
   @media (max-width: 900px) {
     .nav { gap: 10px 12px !important; }
     .nav .btn { font-size: 14px !important; padding-inline: 12px !important; }
@@ -40,6 +66,84 @@
     .nav img { height: 44px !important; width: 138px !important; }
   }
 </style>
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) document.documentElement.classList.add('om-motion');
+  var navDone = false, io = null, parList = [], parBound = false;
+
+  function bindNav() {
+    var nav = document.querySelector('.nav');
+    if (!nav || navDone) return;
+    navDone = true;
+    var onScroll = function () {
+      if (window.scrollY > 8) nav.classList.add('om-stuck');
+      else nav.classList.remove('om-stuck');
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  function observer() {
+    if (io) return io;
+    if (!('IntersectionObserver' in window)) return null;
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('om-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+    return io;
+  }
+
+  function tag() {
+    if (reduce) return;
+    var blocks = [].slice.call(document.querySelectorAll('section, footer, article'));
+    var ob = observer();
+    blocks.forEach(function (el, i) {
+      if (el.classList.contains('om-reveal')) return;
+      if (i === 0) { el.classList.add('om-seen'); return; }
+      el.classList.add('om-reveal');
+      if (ob) ob.observe(el); else el.classList.add('om-in');
+    });
+  }
+
+  function parallax() {
+    if (reduce || parBound) return;
+    if (!window.matchMedia('(min-width: 900px) and (pointer: fine)').matches) return;
+    parList = [].slice.call(document.querySelectorAll('.om-par'));
+    if (!parList.length) return;
+    parBound = true;
+    var ticking = false;
+    var frame = function () {
+      ticking = false;
+      var vh = window.innerHeight;
+      parList.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        var ratio = (r.top + r.height / 2 - vh / 2) / vh;
+        el.style.transform = 'translate3d(0,' + (ratio * -26).toFixed(2) + 'px,0)';
+      });
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(frame); }
+    }, { passive: true });
+    frame();
+  }
+
+  function sweep() { bindNav(); tag(); parallax(); }
+
+  sweep();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sweep);
+  window.addEventListener('load', sweep);
+  if ('MutationObserver' in window) {
+    var mo = new MutationObserver(function () { sweep(); });
+    var startMo = function () { if (document.body) mo.observe(document.body, { childList: true, subtree: true }); };
+    if (document.body) startMo();
+    else document.addEventListener('DOMContentLoaded', startMo);
+    window.setTimeout(function () { mo.disconnect(); sweep(); }, 8000);
+  }
+})();
+</script>
 </helmet>
 
 <div style="--color-accent: #2D2CCF; --color-bg: #ffffff; --color-text: #000000; background: #ffffff; color: #000000; font-family: var(--font-body); padding-bottom: 72px;">
@@ -63,19 +167,19 @@
 
     <hr style="height: 5px; border: 0; margin: 0; border-top: 2px solid #000; border-bottom: 1px solid #000;" />
 
-    <article style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 8px 48px; padding: 28px 0; border-bottom: 1px solid #d9d9d9;">
+    <article class="post-row" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 8px 48px; padding: 28px 0; border-bottom: 1px solid #d9d9d9;">
       <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 26px; line-height: 1.2; letter-spacing: -0.015em; margin: 0;"><a href="medicare-emergency-room-coverage.html" style="color: #000000;">Medicare and the Emergency Room: What You Need to Know Before You Need It</a></h2>
       <p style="grid-row: span 2; margin: 0; font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; color: #555;">August 25, 2026</p>
       <p style="margin: 0; font-size: 16px; line-height: 28px; max-width: 62ch;">Does Medicare cover ER visits? Yes — but costs, network rules, and coverage while traveling differ between Original Medicare and Medicare Advantage.</p>
     </article>
 
-    <article style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 8px 48px; padding: 28px 0; border-bottom: 1px solid #d9d9d9;">
+    <article class="post-row" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 8px 48px; padding: 28px 0; border-bottom: 1px solid #d9d9d9;">
       <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 26px; line-height: 1.2; letter-spacing: -0.015em; margin: 0;"><a href="medicare-annual-enrollment.html" style="color: #000000;">Why You Should Review Your Medicare Plan Every Year</a></h2>
       <p style="grid-row: span 2; margin: 0; font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; color: #555;">August 25, 2026</p>
       <p style="margin: 0; font-size: 16px; line-height: 28px; max-width: 62ch;">Your plan can quietly change year to year — prescriptions, networks, and premiums included. Here's what to check, and the key 2026 Annual Enrollment dates.</p>
     </article>
 
-    <article style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 8px 48px; padding: 28px 0; border-bottom: 1px solid #d9d9d9;">
+    <article class="post-row" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 8px 48px; padding: 28px 0; border-bottom: 1px solid #d9d9d9;">
       <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 26px; line-height: 1.2; letter-spacing: -0.015em; margin: 0;"><a href="medicare-basics.html" style="color: #000000;">Medicare Basics: What Every New Beneficiary Needs to Know</a></h2>
       <p style="grid-row: span 2; margin: 0; font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase; color: #555;">August 25, 2026</p>
       <p style="margin: 0; font-size: 16px; line-height: 28px; max-width: 62ch;">A plain-English breakdown of Medicare Parts A, B, C & D, Medigap, and exactly when you need to enroll — plus what each one costs in 2026.</p>
