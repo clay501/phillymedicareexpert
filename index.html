@@ -200,11 +200,16 @@
     html.om-motion .om-reveal { opacity: 1 !important; transform: none !important; }
     .card:hover { transform: none; }
   }
+@media (max-width: 620px) {
+    .om-long { display: none; }
+    .nav a[href*="schedulewithclay"] { flex: 0 1 auto !important; }
+    .om-sub span { white-space: normal !important; }
+    .om-carriers li { text-align: center; }
+  }
   @media (max-width: 620px) {
     .nav { padding-block: 8px !important; gap: 8px 10px !important; }
     .nav .btn { font-size: 13px !important; padding-inline: 10px !important; min-height: 40px !important; }
     .nav a[href^="mailto"] { display: none !important; }
-    .nav a[href*="schedulewithclay"] { flex: 1 0 100% !important; justify-content: center !important; }
   }
   @media (max-width: 700px) {
     .post-row { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; }
@@ -234,84 +239,7 @@ document.addEventListener('input', function (e) {
   el.value = out;
 });
 </script>
-<script>
-(function () {
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce) document.documentElement.classList.add('om-motion');
-  var navDone = false, io = null, parList = [], parBound = false;
-
-  function bindNav() {
-    var nav = document.querySelector('.nav');
-    if (!nav || navDone) return;
-    navDone = true;
-    var onScroll = function () {
-      if (window.scrollY > 8) nav.classList.add('om-stuck');
-      else nav.classList.remove('om-stuck');
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
-
-  function observer() {
-    if (io) return io;
-    if (!('IntersectionObserver' in window)) return null;
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('om-in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
-    return io;
-  }
-
-  function tag() {
-    if (reduce) return;
-    var blocks = [].slice.call(document.querySelectorAll('section, footer, article'));
-    var ob = observer();
-    blocks.forEach(function (el, i) {
-      if (el.classList.contains('om-reveal')) return;
-      if (i === 0) { el.classList.add('om-seen'); return; }
-      el.classList.add('om-reveal');
-      if (ob) ob.observe(el); else el.classList.add('om-in');
-    });
-  }
-
-  function parallax() {
-    if (reduce || parBound) return;
-    if (!window.matchMedia('(min-width: 900px) and (pointer: fine)').matches) return;
-    parList = [].slice.call(document.querySelectorAll('.om-par'));
-    if (!parList.length) return;
-    parBound = true;
-    var ticking = false;
-    var frame = function () {
-      ticking = false;
-      var vh = window.innerHeight;
-      parList.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) return;
-        var ratio = (r.top + r.height / 2 - vh / 2) / vh;
-        el.style.transform = 'translate3d(0,' + (ratio * -26).toFixed(2) + 'px,0)';
-      });
-    };
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(frame); }
-    }, { passive: true });
-    frame();
-  }
-
-  function sweep() { bindNav(); tag(); parallax(); }
-
-  sweep();
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sweep);
-  window.addEventListener('load', sweep);
-  if ('MutationObserver' in window) {
-    var mo = new MutationObserver(function () { sweep(); });
-    var startMo = function () { if (document.body) mo.observe(document.body, { childList: true, subtree: true }); };
-    if (document.body) startMo();
-    else document.addEventListener('DOMContentLoaded', startMo);
-    window.setTimeout(function () { mo.disconnect(); sweep(); }, 8000);
-  }
-})();
-</script>
+<script src="motion.js"></script>
 </helmet>
 
 <div style="--color-accent: #2D2CCF; --color-accent-700: #2320a8; --color-accent-800: #1a188a; --color-bg: #ffffff; --color-text: #000000; background: #ffffff; color: #000000; font-family: var(--font-body); padding-bottom: 56px;">
@@ -325,14 +253,14 @@ document.addEventListener('input', function (e) {
     
     <span aria-hidden="true" style="flex: 0 0 1px; max-width: 1px; align-self: stretch; margin: 6px 0; background: #d9d9d9;"></span><a class="btn btn-ghost" href="mailto:clay@thedaywaltgroup.com" style="white-space: nowrap; color: #2D2CCF;">clay@thedaywaltgroup.com</a>
     <a class="btn btn-primary" href="blog.html" style="margin-left: auto; white-space: nowrap; background: #2D2CCF; border-color: #2D2CCF; color: #ffffff;" style-hover="background: #2320a8; border-color: #2320a8;">Read our blog</a>
-    <a class="btn btn-primary" href="https://schedulewithclay.link/medicare/" target="_blank" rel="noopener" style="white-space: nowrap; background: #2D2CCF; border-color: #2D2CCF; color: #ffffff;" style-hover="background: #2320a8; border-color: #2320a8;">Schedule a free consultation today</a>
+    <a class="btn btn-primary" href="https://schedulewithclay.link/medicare/" target="_blank" rel="noopener" style="white-space: nowrap; background: #2D2CCF; border-color: #2D2CCF; color: #ffffff;" style-hover="background: #2320a8; border-color: #2320a8;">Schedule<span class="om-long"> a free consultation today</span></a>
   </nav><div id="top" style="max-width: 960px; margin: 0 auto; padding: 0 clamp(20px, 6vw, 40px);">
 
     <section style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 37px; align-items: center; padding: 44px 0 0;">
       <div>
         
         <h1 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(40px, 9vw, 64px); line-height: 1.06; letter-spacing: -0.025em; margin: 0 0 0 -0.03em; max-width: 812px;">Philly’s Medicare Expert</h1>
-        <p style="font-family: var(--font-heading); font-size: clamp(17px, 2.5vw, 21px); line-height: 1.35; letter-spacing: -0.01em; margin: 14px 0 0; max-width: 812px; color: #2D2CCF;" class="hero-p">Medicare Sales Representative Affiliated With <span style="white-space: nowrap;">The Daywalt Group</span><br><span style="white-space: nowrap;">Serving the Greater Philadelphia Area</span></p>
+        <p style="font-family: var(--font-heading); font-size: clamp(17px, 2.5vw, 21px); line-height: 1.35; letter-spacing: -0.01em; margin: 14px 0 0; max-width: 812px; color: #2D2CCF;" class="hero-p om-sub">Medicare Sales Representative Affiliated With <span style="white-space: nowrap;">The Daywalt Group</span> <br><span style="white-space: nowrap;">Serving the Greater Philadelphia Area</span></p>
         <p class="hero-p" style="font-size: 18px; line-height: 30px; margin: 24px 0 0; max-width: 812px;">Navigating Medicare doesn’t have to be overwhelming. Clay Klaus-Wade and <br><a href="https://thedaywaltgroup.com" target="_blank" rel="noopener">The Daywalt Group</a> are here to guide you every step of the way.</p>
         <p class="hero-p" style="font-size: 18px; line-height: 30px; margin: 18px 0 0; max-width: 812px;">Our mission is to find the right coverage that fits your needs and budget, all while <br>providing personalized support to make the process seamless and stress-free.</p>
         <p class="hero-p" style="font-size: 18px; line-height: 30px; margin: 18px 0 0; max-width: 812px;">Clay meets clients in person, at your home or anywhere else that is comfortable, throughout the Philadelphia five-county area: Philadelphia, Delaware, Montgomery, Chester and Bucks. Phone and video appointments are available if you prefer.</p>
@@ -462,7 +390,7 @@ document.addEventListener('input', function (e) {
 
     <section style="padding: 44px 0 24px;">
       
-      <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(28px, 6vw, 38px); line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 24px;">Insurance Plans Clay Works With</h2><ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 40px;">
+      <h2 style="font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: clamp(28px, 6vw, 38px); line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 24px;">Insurance Plans Clay Works With</h2><ul class="om-carriers" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 40px;">
         <li style="font-size: 16.5px; line-height: 29px; padding: 10px 0; border-top: 1px solid #d9d9d9;">Independence Blue Cross</li>
         <li style="font-size: 16.5px; line-height: 29px; padding: 10px 0; border-top: 1px solid #d9d9d9;">Jefferson Health Plans</li>
         <li style="font-size: 16.5px; line-height: 29px; padding: 10px 0; border-top: 1px solid #d9d9d9;">Clover Health Plans</li>
